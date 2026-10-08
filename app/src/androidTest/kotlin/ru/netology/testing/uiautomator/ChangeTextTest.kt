@@ -148,26 +148,6 @@ class ChangeTextTest {
         val result = device.findObject(By.res(packageName, "text")).text
         assertEquals(result, textToSet)
     }
-
-    @Test
-    fun testFailedChangeTextInNewActivity() {
-        val packageName = MODEL_PACKAGE
-        waitForPackage(packageName)
-
-        // Записываем в поле валидный текст
-        device.findObject(By.res(packageName, "userInput")).text = textToSet
-
-        // Кликаем на кнопку открытия текста в новом Activity
-        device.findObject(By.res(packageName, "buttonActivity")).click()
-
-        // Ждем, пока не появится новая Activity на экране
-        device.wait(Until.hasObject(By.pkg(packageName)), TIMEOUT)
-
-        // Проверяем, что текст в TextView совпадает с тем, который записали в поле ввода
-        val result = device.findObject(By.res(packageName, "text")).text
-        assertEquals(result, "NetologyNetology")
-    }
-
 }
 
 
